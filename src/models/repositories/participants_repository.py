@@ -10,14 +10,14 @@ class ParticipantsRepository:
         cursor.execute(
             '''
                 INSERT INTO participants
-                    (id, trip_id, emails_to_invited_id, name)
+                    (id, trip_id, emails_to_invite_id, name)
                 VALUES
                     (?, ?, ?, ?)
             ''',(
-                participant_infos("id"),
-                participant_infos("trip_id"),
-                participant_infos("emails_to_invited_id"),
-                participant_infos("name"),
+                participant_infos["id"],
+                participant_infos["trip_id"],
+                participant_infos["emails_to_invite_id"],
+                participant_infos["name"],
             )
         )
         self.__conn.commit()
@@ -28,7 +28,7 @@ class ParticipantsRepository:
             '''
                 SELECT p.id, p.name, p.is_confirmed, e.email
                 FROM participants as p
-                JOIN emails_to_invite as e ON e.id = p.emails_to_invited_id
+                JOIN emails_to_invite as e ON e.id = p.emails_to_invite_id
                 WHERE p.trip_id = ?
             ''', (trip_id,)
         )

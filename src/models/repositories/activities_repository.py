@@ -6,14 +6,14 @@ class ActivitiesRepository:
         self.__conn = conn
 
 
-    def registry_activity(self, activity_infos:Dict) -> None:
+    def registry_activity(self, activity_infos: Dict) -> None:
         cursor = self.__conn.cursor()
         cursor.execute(
             """
                 INSERT INTO activities
                     (id, trip_id, title, occurs_at)
                 VALUES
-                    (?, ?, ?)
+                    (?, ?, ?, ?)
             """, (
                 activity_infos["id"],
                 activity_infos["trip_id"],

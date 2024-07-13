@@ -6,7 +6,7 @@ class EmailsToInviteRepository:
         self.__conn = conn
 
 
-    def registry_email(self, email_infos:Dict) -> None:
+    def registry_email(self, email_infos: Dict) -> None:
         cursor = self.__conn.cursor()
         cursor.execute(
             """
